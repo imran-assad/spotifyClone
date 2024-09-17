@@ -11,7 +11,6 @@ const App = () => {
           <SideBar />
           <Display />
         </div>
-
         <Player />
       </div>
     </>
