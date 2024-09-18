@@ -10,11 +10,10 @@ import {
 const DisplayAlbum = () => {
   const { id } = useParams();
   const albumData = albumsData[id];
-  console.log(albumData);
-  console.log(id);
   return (
     <>
       <Navbar />
+      {/* upper section of display album */}
       <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-end">
         <img className="w-48 rounded" src={albumData.image} alt="" />
         <div className="flex flex-col">
@@ -54,6 +53,9 @@ const DisplayAlbum = () => {
             <img className="inline w-10 mr-5" src={item.image} alt="" />
             {item.name}
           </p>
+          <p className="text-[15px]">{albumData.name}</p>
+          <p className="text-[15px] hidden sm:block">5 days</p>
+          <p className="text-[15px] text-center">{item.duration}</p>
         </div>
       ))}
     </>
