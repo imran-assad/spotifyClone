@@ -58,6 +58,11 @@ export const PlayerContextProvider = (props) => {
     }
   };
 
+  const seekSong = async (e) => {
+    audioRef.current.currentTime =
+      (e.nativeEvent.offsetX / seekBg.current.offsetWidth) *
+      audioRef.current.duration;
+  };
   // useEffect(() => {
   //   const updateSeekBar = () => {
   //     if (audioRef.current && seekBar.current && audioRef.current.duration) {
@@ -124,6 +129,7 @@ export const PlayerContextProvider = (props) => {
     playWithId,
     previous,
     next,
+    seekSong,
   };
 
   return (
