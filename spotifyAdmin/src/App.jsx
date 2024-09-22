@@ -7,6 +7,7 @@ import ListAlbum from "./pages/ListAlbum";
 import ListSong from "./pages/ListSong";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import "react-toastify/dist/ReactToastify.css";
 
 export const url = "http://localhost:4000";
 

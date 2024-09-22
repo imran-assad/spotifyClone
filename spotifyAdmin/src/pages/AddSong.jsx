@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { assets } from "../assets/admin-assets/assets.js";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import { url } from "../App.jsx";
 const AddSong = () => {
   const [image, setImage] = useState(false);
   const [song, setSong] = useState(false);
@@ -13,6 +14,7 @@ const AddSong = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -22,8 +24,27 @@ const AddSong = () => {
       formData.append("audio", song);
       formData.append("album", album);
 
-      const response = await axios.post();
-    } catch (error) {}
+      const response = await axios.post(`${url}/api/song/add`, formData);
+
+      if (response.data.success) {
+        toast.success("Song added");
+        setName("");
+        setDesc("");
+        setAlbum("");
+        setImage(false);
+        setSong(false);
+      } else {
+        if (!image || !song) {
+          toast.error("Please upload both an image and a song");
+          setLoading(false);
+          return;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error occured");
+    }
+    setLoading(false);
   };
 
   return loading ? (
@@ -96,7 +117,7 @@ const AddSong = () => {
         <div className="flex flex-col gap-2.5 mt-[-15px]">
           <p>Album</p>
           <select
-            onChange={(e) => e.target.value}
+            onChange={(e) => setAlbum(e.target.value)}
             defaultValue={album}
             className="bg-transparent outline-green-600 border-2 border-gray-4 p-2.5 w-[150px]"
           >
