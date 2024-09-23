@@ -16,6 +16,18 @@ const ListAlbum = () => {
     }
   };
 
+  const removeAlbum = async (id) => {
+    try {
+      const response = await axios.post(`${url}/api/album/remove`, { id });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchAlbums();
+      }
+    } catch (error) {
+      toast.error("Error occured");
+    }
+  };
+
   useEffect(() => {
     fetchAlbums();
   }, []);
@@ -43,7 +55,12 @@ const ListAlbum = () => {
                 <p>{item.name}</p>
                 <p>{item.desc}</p>
                 <input type="color" value={item.bgColour} />
-                <p className="cursor-pointer">X</p>
+                <p
+                  onClick={() => removeAlbum(item._id)}
+                  className="cursor-pointer"
+                >
+                  X
+                </p>
               </div>
             );
           })}
