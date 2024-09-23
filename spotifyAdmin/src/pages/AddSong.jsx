@@ -55,7 +55,7 @@ const AddSong = () => {
     <>
       <form
         onSubmit={onSubmitHandler}
-        className="flex flex-col items-start gap-8 text-gray-600 mt-[-35px]"
+        className="flex flex-col items-start gap-7 text-gray-600 mt-[-20px]"
       >
         <div className="flex gap-8">
           <div className="flex flex-col gap-4">
