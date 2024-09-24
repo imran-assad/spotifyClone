@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { assets, songsData } from "../assets/frontend-assets/assets";
+import { assets } from "../assets/frontend-assets/assets";
 import { PlayerContext } from "../context/Playercontext";
 const Player = () => {
   const {
@@ -15,7 +15,7 @@ const Player = () => {
     seekSong,
   } = useContext(PlayerContext);
 
-  return (
+  return track ? (
     <>
       <div className="h-[10%] bg-black flex justify-between items-center text-white px-4">
         {/* <div className="hidden lg:flex items-center gap-4">
@@ -99,7 +99,7 @@ const Player = () => {
         </div>
       </div>
     </>
-  );
+  ) : null;
 };
 
 export default Player;
